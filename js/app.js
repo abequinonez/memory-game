@@ -1,7 +1,24 @@
 /*
- * Create a list that holds all of your cards
- */
+Create an array containing each card type, represented by a Font Awesome class
+name. A pair of cards will be created for each card type in the forEach()
+method that follows. The missing 'fa-' prefix will be added to each card when
+its HTML is created.
+*/
+let cardList = [
+    'diamond',
+    'paper-plane-o',
+    'anchor',
+    'bolt',
+    'cube',
+    'leaf',
+    'bicycle',
+    'bomb'
+];
 
+// Add a copy of each card type to the cardList array to create pairs of cards
+cardList.forEach(function(card) {
+    cardList.push(card);
+});
 
 /*
  * Display the cards on the page
@@ -9,6 +26,7 @@
  *   - loop through each card and create its HTML
  *   - add each card's HTML to the page
  */
+
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
