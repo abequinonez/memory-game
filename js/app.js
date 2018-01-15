@@ -20,13 +20,36 @@ cardList.forEach(function(card) {
     cardList.push(card);
 });
 
-/*
- * Display the cards on the page
- *   - shuffle the list of cards using the provided "shuffle" method below
- *   - loop through each card and create its HTML
- *   - add each card's HTML to the page
- */
+// Display the cards on the page
+function displayCards() {
+    // Shuffle the list of cards
+    cardList = shuffle(cardList);
 
+    // Create a fragment to reduce reflow and repaint
+    const fragment = document.createDocumentFragment();
+
+    // Loop through each card and create its HTML
+    for (const card of cardList) {
+        // Create a list item element for each card
+        const cardElem = document.createElement('li');
+        cardElem.classList.add('card');
+
+        // Create a string variable containing each card's HTML text
+        const cardHTML = `<i class="fa fa-${card}"></i>`;
+
+        // Parse each card's text as HTML and insert it into the card element
+        cardElem.insertAdjacentHTML('beforeend', cardHTML);
+
+        // Append each card element to the document fragment
+        fragment.appendChild(cardElem);
+    }
+
+    // Select the deck element
+    const deck = document.querySelector('.deck');
+
+    // Append the document fragment to the deck element
+    deck.appendChild(fragment);
+}
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
