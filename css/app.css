@@ -22,6 +22,7 @@ body {
 }
 
 .container {
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -106,4 +107,24 @@ h1 {
 .score-panel .restart {
     float: right;
     cursor: pointer;
+}
+
+/*
+ * Media query for smaller viewport sizes
+ */
+
+@media screen and (max-width: 695px) {
+    .deck {
+        width: 95%;
+        min-height: unset;
+        padding: 2%;
+        box-shadow: 6px 7.5px 10px 0 rgba(46, 61, 73, 0.5);
+    }
+
+    .deck .card {
+        /* Viewport units were used due to problems with percentages */
+        height: 18vw;
+        width: 18vw;
+        margin: 2.273vw;
+    }
 }
