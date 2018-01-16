@@ -110,7 +110,7 @@ h1 {
 }
 
 /*
- * Media query for smaller viewport sizes
+ * Media queries for smaller viewport sizes
  */
 
 @media screen and (max-width: 695px) {
@@ -126,5 +126,11 @@ h1 {
         height: 18vw;
         width: 18vw;
         margin: 2.273vw;
+    }
+}
+
+@media screen and (max-width: 384px) {
+    .score-panel {
+        width: 90%;
     }
 }
