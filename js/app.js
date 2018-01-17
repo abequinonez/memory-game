@@ -87,9 +87,10 @@ const deck = {
         const cards = document.getElementsByClassName('card');
         for (let i = 0; i < cards.length; i++) {
             cards[i].addEventListener('click', function() {
+                game.displayCardSymbol(this);
+
                 console.log(this);
-                console.log(this.firstElementChild.classList[1]);
-                this.classList.add('open', 'show');
+                console.log(this.firstElementChild.classList[1]); 
             });
         }
     }
@@ -110,6 +111,10 @@ const deck = {
  const game = {
     start() {
         deck.setup();
+    },
+    // Display the card's symbol when clicked
+    displayCardSymbol(card) {
+        card.classList.add('open', 'show');
     }
  };
 
