@@ -87,11 +87,14 @@ const deck = {
         const cards = document.getElementsByClassName('card');
         for (let i = 0; i < cards.length; i++) {
             cards[i].addEventListener('click', function() {
-                game.displayCardSymbol(this);
-                game.addCardToOpenList(this);
+                // Only handle a click if a card is not "open"
+                if (!this.classList.contains('open')) {
+                    game.displayCardSymbol(this);
+                    game.addCardToOpenList(this);
 
-                console.log(this);
-                console.log(this.firstElementChild.classList[1]); 
+                    console.log(this);
+                    console.log(this.firstElementChild.classList[1]);
+                }
             });
         }
     }
