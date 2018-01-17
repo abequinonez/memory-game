@@ -106,4 +106,9 @@ const deck = {
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
 
+// Create an object that contains properties specific to the game
+ const game = {
+
+ };
+
 deck.setup();
