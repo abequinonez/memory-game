@@ -35,20 +35,6 @@ const deck = {
 
         return cardList;
     },
-    // Shuffle function from http://stackoverflow.com/a/2450976
-    shuffle(array) {
-        let currentIndex = array.length, temporaryValue, randomIndex;
-
-        while (currentIndex !== 0) {
-            randomIndex = Math.floor(Math.random() * currentIndex);
-            currentIndex -= 1;
-            temporaryValue = array[currentIndex];
-            array[currentIndex] = array[randomIndex];
-            array[randomIndex] = temporaryValue;
-        }
-
-        return array;
-    },
     // Display the cards on the page
     displayCards(cardList) {
         // Shuffle the list of cards
@@ -81,6 +67,20 @@ const deck = {
 
         // Append the document fragment to the deck element
         deckElem.appendChild(fragment);
+    },
+    // Shuffle function from http://stackoverflow.com/a/2450976
+    shuffle(array) {
+        let currentIndex = array.length, temporaryValue, randomIndex;
+
+        while (currentIndex !== 0) {
+            randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex -= 1;
+            temporaryValue = array[currentIndex];
+            array[currentIndex] = array[randomIndex];
+            array[randomIndex] = temporaryValue;
+        }
+
+        return array;
     },
     // Add a click event listener to each card
     addEventListeners() {
