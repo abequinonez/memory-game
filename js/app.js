@@ -89,11 +89,7 @@ const deck = {
             cards[i].addEventListener('click', function() {
                 // Only handle a click if a card is not "open"
                 if (!this.classList.contains('open')) {
-                    game.displayCardSymbol(this);
-                    game.addCardToOpenList(this);
-
-                    console.log(this);
-                    console.log(this.firstElementChild.classList[1]);
+                    game.handleClick(this);
                 }
             });
         }
@@ -116,6 +112,13 @@ const deck = {
     openCardList: [],
     start() {
         deck.setup();
+    },
+    handleClick(card) {
+        this.displayCardSymbol(card);
+        this.addCardToOpenList(card);
+
+        console.log(card);
+        console.log(card.firstElementChild.classList[1]);
     },
     // Display the card's symbol when clicked
     displayCardSymbol(card) {
