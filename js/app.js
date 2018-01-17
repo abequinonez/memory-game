@@ -88,6 +88,7 @@ const deck = {
         for (let i = 0; i < cards.length; i++) {
             cards[i].addEventListener('click', function() {
                 game.displayCardSymbol(this);
+                game.addCardToOpenList(this);
 
                 console.log(this);
                 console.log(this.firstElementChild.classList[1]); 
@@ -109,12 +110,17 @@ const deck = {
 
 // Create an object that contains properties specific to the game
  const game = {
+    openCardList: [],
     start() {
         deck.setup();
     },
     // Display the card's symbol when clicked
     displayCardSymbol(card) {
         card.classList.add('open', 'show');
+    },
+    // Add the clicked card to a list of open cards
+    addCardToOpenList(card) {
+        this.openCardList.push(card);
     }
  };
 
