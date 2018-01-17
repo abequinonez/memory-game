@@ -108,7 +108,9 @@ const deck = {
 
 // Create an object that contains properties specific to the game
  const game = {
-
+    start() {
+        deck.setup();
+    }
  };
 
-deck.setup();
+game.start();
