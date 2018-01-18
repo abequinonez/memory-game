@@ -111,6 +111,7 @@ const deck = {
  const game = {
     openCardList: [],
     moveCounter: 0,
+    starsCount: 0,
     start() {
         deck.setup();
     },
@@ -152,7 +153,7 @@ const deck = {
 
         // Now check if the symbols match
         if (currentCardSymbol === previousCardSymbol) {
-            // TODO: Handle match
+            this.isGameOver();
         } else {
             this.handleMismatch(previousIndex, currentCard, previousCard);
         }
@@ -174,6 +175,33 @@ const deck = {
         element's textContent property.
         */
         moveCounterElem.textContent = ++this.moveCounter;
+    },
+    // Check if the game is over and take appropriate action
+    isGameOver() {
+        // If there are 16 cards in the open cards list, the game is over
+        if (this.openCardList.length === 16) {
+            // Select the deck and hide it
+            const deckContainerElem = document.querySelector('.container');
+            deckContainerElem.style.display = 'none';
+
+            // Select the hidden modal and display it
+            const modalElem = document.querySelector('.modal');
+            modalElem.style.display = 'block';
+
+            /*
+            Select the moves total element and change its textContent
+            property to display the move counter's value.
+            */
+            const movesTotalElem = document.querySelector('.moves-total');
+            movesTotalElem.textContent = this.moveCounter;
+
+            /*
+            Select the stars total element and change its textContent
+            property to display the stars count value.
+            */
+            const starsTotalElem = document.querySelector('.stars-total');
+            starsTotalElem.textContent = this.starsCount;
+        }
     }
  };
 

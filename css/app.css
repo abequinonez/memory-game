@@ -110,6 +110,19 @@ h1 {
 }
 
 /*
+ * Styles for the modal
+ */
+
+.modal {
+    display: none;
+    position: absolute;
+    left: 0;
+    top: 50vw;
+    width: 100%;
+    text-align: center;
+}
+
+/*
  * Media queries for smaller viewport sizes
  */
 
