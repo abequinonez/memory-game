@@ -151,8 +151,15 @@ const deck = {
         if (currentCardSymbol === previousCardSymbol) {
             // TODO: Handle match
         } else {
-            // TODO: Handle mismatch
+            this.handleMismatch(previousIndex, currentCard, previousCard);
         }
+    },
+    handleMismatch(previousIndex, currentCard, previousCard) {
+        this.openCardList.splice(previousIndex, 2);
+        setTimeout(function() {
+            currentCard.classList.remove('open', 'show');
+            previousCard.classList.remove('open', 'show');
+        }, 800);
     }
  };
 
