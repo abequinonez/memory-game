@@ -110,6 +110,7 @@ const deck = {
 // Create an object that contains properties specific to the game
  const game = {
     openCardList: [],
+    moveCounter: 0,
     start() {
         deck.setup();
     },
@@ -118,11 +119,13 @@ const deck = {
         this.addCardToOpenList(card);
 
         /*
-        If there is an even amount of cards in the open cards list, check if
-        the two most recently added match.
+        Call the appropriate methods when a move has been made. This is
+        determined by there being an even number of cards in the open
+        cards list.
         */
         if (this.openCardList.length % 2 === 0) {
             this.checkForMatch();
+            this.incrementMoveCounter();
         }
     },
     // Display the card's symbol when clicked
@@ -160,6 +163,17 @@ const deck = {
             currentCard.classList.remove('open', 'show');
             previousCard.classList.remove('open', 'show');
         }, 800);
+    },
+    // Increment the move counter and display its updated value on the page
+    incrementMoveCounter() {
+        // Select the move counter element
+        const moveCounterElem = document.querySelector('.moves');
+
+        /*
+        Increment the move counter's value and assign it to the move counter
+        element's textContent property.
+        */
+        moveCounterElem.textContent = ++this.moveCounter;
     }
  };
 
