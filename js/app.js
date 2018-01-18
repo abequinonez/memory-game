@@ -117,8 +117,13 @@ const deck = {
         this.displayCardSymbol(card);
         this.addCardToOpenList(card);
 
-        console.log(card);
-        console.log(card.firstElementChild.classList[1]);
+        /*
+        If there is an even amount of cards in the open cards list, check if
+        the two most recently added match.
+        */
+        if (this.openCardList.length % 2 === 0) {
+            this.checkForMatch();
+        }
     },
     // Display the card's symbol when clicked
     displayCardSymbol(card) {
@@ -127,6 +132,27 @@ const deck = {
     // Add the clicked card to a list of open cards
     addCardToOpenList(card) {
         this.openCardList.push(card);
+    },
+    // Check if the two most recently added cards match
+    checkForMatch() {
+        // Get the index for the current and previous cards
+        const currentIndex  = this.openCardList.length - 1;
+        const previousIndex = this.openCardList.length - 2;
+
+        // Using the indexes, get the current and previous cards
+        const currentCard = this.openCardList[currentIndex];
+        const previousCard = this.openCardList[previousIndex];
+
+        // Get the symbol for each card
+        const currentCardSymbol = currentCard.firstElementChild.classList[1];
+        const previousCardSymbol = previousCard.firstElementChild.classList[1];
+
+        // Now check if the symbols match
+        if (currentCardSymbol === previousCardSymbol) {
+            // TODO: Handle match
+        } else {
+            // TODO: Handle mismatch
+        }
     }
  };
 
