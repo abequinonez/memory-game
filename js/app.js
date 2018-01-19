@@ -169,28 +169,31 @@ const deck = {
     isGameOver() {
         // If there are 16 cards in the open cards list, the game is over
         if (this.openCardList.length === 16) {
-            // Select the deck and hide it
-            const deckContainerElem = document.querySelector('.container');
-            deckContainerElem.style.display = 'none';
-
-            // Select the hidden modal and display it
-            const modalElem = document.querySelector('.modal');
-            modalElem.style.display = 'block';
-
-            /*
-            Select the moves total element and change its textContent
-            property to display the move counter's value.
-            */
-            const movesTotalElem = document.querySelector('.moves-total');
-            movesTotalElem.textContent = this.moveCounter;
-
-            /*
-            Select the stars total element and change its textContent
-            property to display the stars count value.
-            */
-            const starsTotalElem = document.querySelector('.stars-total');
-            starsTotalElem.textContent = this.starsCount;
+            this.displayModal();
         }
+    },
+    displayModal() {
+        // Select the deck and hide it
+        const deckContainerElem = document.querySelector('.container');
+        deckContainerElem.style.display = 'none';
+
+        // Select the hidden modal and display it
+        const modalElem = document.querySelector('.modal');
+        modalElem.style.display = 'block';
+
+        /*
+        Select the moves total element and change its textContent
+        property to display the move counter's value.
+        */
+        const movesTotalElem = document.querySelector('.moves-total');
+        movesTotalElem.textContent = this.moveCounter;
+
+        /*
+        Select the stars total element and change its textContent
+        property to display the stars count value.
+        */
+        const starsTotalElem = document.querySelector('.stars-total');
+        starsTotalElem.textContent = this.starsCount;
     }
  };
 
