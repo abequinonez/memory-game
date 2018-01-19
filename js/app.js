@@ -137,6 +137,17 @@ const deck = {
     addCardToOpenList(card) {
         this.openCardList.push(card);
     },
+    // Increment the move counter and display its updated value on the page
+    incrementMoveCounter() {
+        // Select the move counter element
+        const moveCounterElem = document.querySelector('.moves');
+
+        /*
+        Increment the move counter's value and assign it to the move counter
+        element's textContent property.
+        */
+        moveCounterElem.textContent = ++this.moveCounter;
+    },
     // Check if the two most recently added cards match
     checkForMatch() {
         // Get the index for the current and previous cards
@@ -164,17 +175,6 @@ const deck = {
             currentCard.classList.remove('open', 'show');
             previousCard.classList.remove('open', 'show');
         }, 800);
-    },
-    // Increment the move counter and display its updated value on the page
-    incrementMoveCounter() {
-        // Select the move counter element
-        const moveCounterElem = document.querySelector('.moves');
-
-        /*
-        Increment the move counter's value and assign it to the move counter
-        element's textContent property.
-        */
-        moveCounterElem.textContent = ++this.moveCounter;
     },
     // Check if the game is over and take appropriate action
     isGameOver() {
