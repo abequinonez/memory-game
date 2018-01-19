@@ -100,7 +100,7 @@ const deck = {
  const game = {
     openCardList: [],
     moveCounter: 0,
-    starsCount: 0,
+    starsCount: 3,
     start() {
         deck.setup();
     },
@@ -115,6 +115,7 @@ const deck = {
         */
         if (this.openCardList.length % 2 === 0) {
             this.incrementMoveCounter();
+            this.removeStarIfNecessary();
             this.checkForMatch();
         }
     },
@@ -136,6 +137,25 @@ const deck = {
         element's textContent property.
         */
         moveCounterElem.textContent = ++this.moveCounter;
+    },
+    // Remove a star after 13 moves and another after 25 moves
+    removeStarIfNecessary() {
+        switch (this.moveCounter) {
+            case 13:
+            case 25:
+                // Remove a star from the starsCount property
+                this.starsCount--;
+
+                // Select the star elements as a list (HTMLCollection)
+                const stars = document.getElementsByClassName('fa-star');
+
+                /*
+                Select the last star in the list and replace its star icon with
+                an empty star.
+                */
+                const lastIndex = stars.length - 1;
+                stars[lastIndex].classList.replace('fa-star', 'fa-star-o');
+        }
     },
     // Check if the two most recently added cards match
     checkForMatch() {
