@@ -125,8 +125,8 @@ const deck = {
         cards list.
         */
         if (this.openCardList.length % 2 === 0) {
-            this.checkForMatch();
             this.incrementMoveCounter();
+            this.checkForMatch();
         }
     },
     // Display the card's symbol when clicked
