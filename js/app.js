@@ -1,3 +1,23 @@
+// Create an object that contains properties specific to the score panel
+const scorePanel = {
+    // Set up the score panel
+    setup() {
+        this.selectStarElems();
+    },
+    // Select the star elements as a list (HTMLCollection)
+    selectStarElems() {
+        this.starElems = document.getElementsByClassName('fa-star');
+    },
+    /*
+    Select the last star in the list and replace its star icon with
+    an empty star.
+    */
+    replaceStarIcon() {
+        const lastIndex = this.starElems.length - 1;
+        this.starElems[lastIndex].classList.replace('fa-star', 'fa-star-o');
+    }
+};
+
 // Create an object that contains properties specific to the card deck
 const deck = {
     // Set up the card deck
@@ -102,6 +122,7 @@ const deck = {
     moveCounter: 0,
     starsCount: 3,
     start() {
+        scorePanel.setup();
         deck.setup();
     },
     handleClick(card) {
@@ -146,15 +167,12 @@ const deck = {
                 // Remove a star from the starsCount property
                 this.starsCount--;
 
-                // Select the star elements as a list (HTMLCollection)
-                const starElems = document.getElementsByClassName('fa-star');
-
                 /*
-                Select the last star in the list and replace its star icon with
-                an empty star.
+                Remove the last star from the set of stars on the score panel.
+                This is accomplished by replacing the star's icon with an
+                empty star.
                 */
-                const lastIndex = starElems.length - 1;
-                starElems[lastIndex].classList.replace('fa-star', 'fa-star-o');
+                scorePanel.replaceStarIcon();
         }
     },
     // Check if the two most recently added cards match
