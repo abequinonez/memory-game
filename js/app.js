@@ -147,14 +147,14 @@ const deck = {
                 this.starsCount--;
 
                 // Select the star elements as a list (HTMLCollection)
-                const stars = document.getElementsByClassName('fa-star');
+                const starElems = document.getElementsByClassName('fa-star');
 
                 /*
                 Select the last star in the list and replace its star icon with
                 an empty star.
                 */
-                const lastIndex = stars.length - 1;
-                stars[lastIndex].classList.replace('fa-star', 'fa-star-o');
+                const lastIndex = starElems.length - 1;
+                starElems[lastIndex].classList.replace('fa-star', 'fa-star-o');
         }
     },
     // Check if the two most recently added cards match
