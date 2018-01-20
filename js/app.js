@@ -3,6 +3,7 @@ const scorePanel = {
     // Set up the score panel
     setup() {
         this.selectStarElems();
+        this.addRestartBtnListener();
     },
     // Select the star elements as a list (HTMLCollection)
     selectStarElems() {
@@ -15,6 +16,13 @@ const scorePanel = {
     replaceStarIcon() {
         const lastIndex = this.starElems.length - 1;
         this.starElems[lastIndex].classList.replace('fa-star', 'fa-star-o');
+    },
+    // Add a click event listener to the restart button
+    addRestartBtnListener() {
+        const restartBtn = document.querySelector('.restart');
+        restartBtn.addEventListener('click', function() {
+            // TODO: Add method call to restart game
+        });
     }
 };
 
