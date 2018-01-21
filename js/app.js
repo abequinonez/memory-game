@@ -21,7 +21,7 @@ const scorePanel = {
     addRestartBtnListener() {
         const restartBtn = document.querySelector('.restart');
         restartBtn.addEventListener('click', function() {
-            // TODO: Add method call to restart game
+            deck.resetDeck();
         });
     }
 };
@@ -119,6 +119,15 @@ const deck = {
                 }
             });
         }
+    },
+    // Reset the card deck by clearing the cards and adding a new set
+    resetDeck() {
+        const cards = document.querySelectorAll('.card');
+        cards.forEach(function(card) {
+            card.remove();
+        });
+        this.displayCards();
+        this.addEventListeners();
     }
 };
 
