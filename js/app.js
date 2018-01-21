@@ -30,8 +30,8 @@ const scorePanel = {
 const deck = {
     // Set up the card deck
     setup() {
-        const cardList = this.createCardList();
-        this.displayCards(cardList);
+        this.createCardList();
+        this.displayCards();
         this.addEventListeners();
     },
     // Create the card list
@@ -42,7 +42,7 @@ const deck = {
         in the forEach() method that follows. The missing 'fa-' prefix will be
         added to each card when its HTML is created.
         */
-        let cardList = [
+        this.cardList = [
             'diamond',
             'paper-plane-o',
             'anchor',
@@ -57,22 +57,20 @@ const deck = {
         Add a copy of each card type to the cardList array to create pairs
         of cards.
         */
-        cardList.forEach(function(card) {
-            cardList.push(card);
+        this.cardList.forEach(function(card, i, arr) {
+            arr.push(card);
         });
-
-        return cardList;
     },
     // Display the cards on the page
-    displayCards(cardList) {
+    displayCards() {
         // Shuffle the list of cards
-        cardList = this.shuffle(cardList);
+        this.cardList = this.shuffle(this.cardList);
 
         // Create a fragment to reduce reflow and repaint
         const fragment = document.createDocumentFragment();
 
         // Loop through each card and create its HTML
-        for (const card of cardList) {
+        for (const card of this.cardList) {
             // Create a list item element for each card
             const cardElem = document.createElement('li');
             cardElem.classList.add('card');
