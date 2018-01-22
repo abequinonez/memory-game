@@ -165,6 +165,7 @@ const deck = {
     reset() {
         this.setProperties();
         scorePanel.resetStarElems();
+        scorePanel.updateMoveCounterElem(0);
         deck.resetDeck();
     },
     // Set (or reset) the game object properties
