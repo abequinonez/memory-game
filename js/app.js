@@ -133,12 +133,16 @@ const deck = {
 
 // Create an object that contains properties specific to the game
  const game = {
-    openCardList: [],
-    moveCounter: 0,
-    starsCount: 3,
     start() {
+        this.setProperties();
         scorePanel.setup();
         deck.setup();
+    },
+    // Set (or reset) the game object properties
+    setProperties() {
+        this.openCardList =[];
+        this.moveCounter = 0;
+        this.starsCount = 3;
     },
     handleClick(card) {
         this.displayCardSymbol(card);
