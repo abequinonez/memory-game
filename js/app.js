@@ -21,7 +21,7 @@ const scorePanel = {
     addRestartBtnListener() {
         const restartBtn = document.querySelector('.restart');
         restartBtn.addEventListener('click', function() {
-
+            game.reset();
         });
     }
 };
