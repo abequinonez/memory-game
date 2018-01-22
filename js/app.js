@@ -3,11 +3,16 @@ const scorePanel = {
     // Set up the score panel
     setup() {
         this.selectStarElems();
+        this.selectMoveCounterElem();
         this.addRestartBtnListener();
     },
     // Select the star elements as a list (HTMLCollection)
     selectStarElems() {
         this.starElems = document.getElementsByClassName('fa-star');
+    },
+    // Select the move counter element
+    selectMoveCounterElem() {
+        this.moveCounterElem = document.querySelector('.moves');
     },
     /*
     Select the last star in the list and replace its star icon with
@@ -16,6 +21,13 @@ const scorePanel = {
     replaceStarIcon() {
         const lastIndex = this.starElems.length - 1;
         this.starElems[lastIndex].classList.replace('fa-star', 'fa-star-o');
+    },
+    /*
+    Update the move counter element's textContent property with the value
+    passed in.
+    */
+    updateMoveCounterElem(value) {
+        this.moveCounterElem.textContent = value;
     },
     // Add a click event listener to the restart button
     addRestartBtnListener() {
@@ -186,14 +198,11 @@ const deck = {
     },
     // Increment the move counter and display its updated value on the page
     incrementMoveCounter() {
-        // Select the move counter element
-        const moveCounterElem = document.querySelector('.moves');
-
         /*
-        Increment the move counter's value and assign it to the move counter
-        element's textContent property.
+        Pass the move counter's incremented value to updateMoveCounterElem() as
+        an argument.
         */
-        moveCounterElem.textContent = ++this.moveCounter;
+        scorePanel.updateMoveCounterElem(++this.moveCounter);
     },
     // Remove a star after 13 moves and another after 25 moves
     removeStarIfNecessary() {
