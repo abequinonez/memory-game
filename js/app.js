@@ -138,6 +138,9 @@ const deck = {
         scorePanel.setup();
         deck.setup();
     },
+    reset() {
+        
+    }
     // Set (or reset) the game object properties
     setProperties() {
         this.openCardList =[];
