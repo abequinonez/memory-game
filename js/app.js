@@ -139,6 +139,7 @@ const deck = {
         deck.setup();
     },
     reset() {
+        this.setProperties();
         deck.resetDeck();
     },
     // Set (or reset) the game object properties
