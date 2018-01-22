@@ -21,7 +21,7 @@ const scorePanel = {
     addRestartBtnListener() {
         const restartBtn = document.querySelector('.restart');
         restartBtn.addEventListener('click', function() {
-            deck.resetDeck();
+
         });
     }
 };
@@ -139,7 +139,7 @@ const deck = {
         deck.setup();
     },
     reset() {
-        
+        deck.resetDeck();
     }
     // Set (or reset) the game object properties
     setProperties() {
