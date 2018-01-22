@@ -23,6 +23,18 @@ const scorePanel = {
         restartBtn.addEventListener('click', function() {
             game.reset();
         });
+    },
+    // Reset the star icons if at least one has been removed
+    resetStarElems() {
+        if (this.starElems.length < 3) {
+            const starListItems = document.querySelectorAll('.stars li');
+            starListItems.forEach(function(starItem) {
+                const star = starItem.firstElementChild;
+                if (star.classList.contains('fa-star-o')) {
+                    star.classList.replace('fa-star-o', 'fa-star');
+                }
+            });
+        }
     }
 };
 
