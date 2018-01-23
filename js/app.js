@@ -203,9 +203,26 @@ const modal = {
     // Add a click event listener to the 'play again' button
     addPlayAgainBtnListener() {
         const playAgainBtn = document.querySelector('.play-again-btn');
+
+        /*
+        The keyword 'this' is bound to the listener in order to maintain the
+        correct context. In this case, 'this' refers to the modal object. The
+        following Stack Overflow discussion was helpful:
+        https://stackoverflow.com/q/13996263
+        */
         playAgainBtn.addEventListener('click', function() {
-            // TODO: Add method calls
-        });
+            /*
+            Disable the button to ensure there are no additional clicks. The
+            following Stack Overflow post was used as a reference:
+            https://stackoverflow.com/a/11719987
+            */
+            playAgainBtn.disabled = true;
+            game.reset();
+            this.toggleModal();
+
+            // Enable the button when it is no longer visible
+            playAgainBtn.disabled = false;
+        }.bind(this));
     }
 };
 
