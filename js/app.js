@@ -163,6 +163,7 @@ const modal = {
     // Set up the modal by selecting and storing the relevant elements
     setup() {
         this.selectComponents();
+        this.addPlayAgainBtnListener();
     },
     // Select and store the elements necessary for the modal
     selectComponents() {
@@ -198,6 +199,13 @@ const modal = {
             // Display the card deck
             this.deckContainerElem.style.display = 'flex';
         }
+    },
+    // Add a click event listener to the 'play again' button
+    addPlayAgainBtnListener() {
+        const playAgainBtn = document.querySelector('.play-again-btn');
+        playAgainBtn.addEventListener('click', function() {
+            // TODO: Add method calls
+        });
     }
 };
 
