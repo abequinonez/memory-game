@@ -155,12 +155,59 @@ const deck = {
     }
 };
 
+/*
+Create an object that contains properties specific to the modal. The modal is
+hidden until the game is won.
+*/
+const modal = {
+    // Set up the modal by selecting and storing the relevant elements
+    setup() {
+        this.selectComponents();
+    },
+    // Select and store the elements necessary for the modal
+    selectComponents() {
+        // Select the deck
+        this.deckContainerElem = document.querySelector('.container');
+
+        // Select the actual modal
+        this.modalElem = document.querySelector('.modal');
+
+        // Select the moves total element
+        this.movesTotalElem = document.querySelector('.moves-total');
+
+        // Select the stars total element
+        this.starsTotalElem = document.querySelector('.stars-total');
+    },
+    // Toggle the modal
+    toggleModal() {
+        const modalDisplay = this.modalElem.style.display;
+        if (modalDisplay === 'none' || modalDisplay === '') {
+            // Assign the appropriate values to the corresponding elements
+            this.movesTotalElem.textContent = game.moveCounter;
+            this.starsTotalElem.textContent = game.starsCount;
+
+            // Hide the card deck
+            this.deckContainerElem.style.display = 'none';
+
+            // Display the modal
+            this.modalElem.style.display = 'block';
+        } else {
+            // Hide the modal
+            this.modalElem.style.display = 'none';
+
+            // Display the card deck
+            this.deckContainerElem.style.display = 'flex';
+        }
+    }
+};
+
 // Create an object that contains properties specific to the game
  const game = {
     start() {
         this.setProperties();
         scorePanel.setup();
         deck.setup();
+        modal.setup();
     },
     reset() {
         this.setProperties();
@@ -253,31 +300,9 @@ const deck = {
     isGameOver() {
         // If there are 16 cards in the open cards list, the game is over
         if (this.openCardList.length === 16) {
-            this.displayModal();
+            // Display the modal
+            modal.toggleModal();
         }
-    },
-    displayModal() {
-        // Select the deck and hide it
-        const deckContainerElem = document.querySelector('.container');
-        deckContainerElem.style.display = 'none';
-
-        // Select the hidden modal and display it
-        const modalElem = document.querySelector('.modal');
-        modalElem.style.display = 'block';
-
-        /*
-        Select the moves total element and change its textContent
-        property to display the move counter's value.
-        */
-        const movesTotalElem = document.querySelector('.moves-total');
-        movesTotalElem.textContent = this.moveCounter;
-
-        /*
-        Select the stars total element and change its textContent
-        property to display the stars count value.
-        */
-        const starsTotalElem = document.querySelector('.stars-total');
-        starsTotalElem.textContent = this.starsCount;
     }
  };
 
