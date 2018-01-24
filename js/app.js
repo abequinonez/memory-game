@@ -2,16 +2,14 @@
 const scorePanel = {
     // Set up the score panel
     setup() {
-        this.selectStarElems();
-        this.selectMoveCounterElem();
+        this.selectComponents();
         this.addRestartBtnListener();
     },
-    // Select the star elements as a list (HTMLCollection)
-    selectStarElems() {
+    selectComponents() {
+        // Select the star elements as a list (HTMLCollection)
         this.starElems = document.getElementsByClassName('fa-star');
-    },
-    // Select the move counter element
-    selectMoveCounterElem() {
+
+        // Select the move counter element
         this.moveCounterElem = document.querySelector('.moves');
     },
     /*
