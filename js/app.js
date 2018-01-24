@@ -6,6 +6,9 @@ const scorePanel = {
         this.addRestartBtnListener();
     },
     selectComponents() {
+        // Select the timer element
+        this.timerElem = document.querySelector('.timer');
+
         // Select the star elements as a list (HTMLCollection)
         this.starElems = document.getElementsByClassName('fa-star');
 
