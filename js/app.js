@@ -33,6 +33,12 @@ const scorePanel = {
     updateMoveCounterElem(value) {
         this.moveCounterElem.textContent = value;
     },
+    // Update the timer with the values passed in
+    updateTimer(mSec, sec, min) {
+        this.mSecondsElem.textContent = mSec;
+        this.secondsElem.textContent = sec;
+        this.minutesElem.textContent = min;
+    },
     // Add a click event listener to the restart button
     addRestartBtnListener() {
         const restartBtn = document.querySelector('.restart');
