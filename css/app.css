@@ -97,6 +97,12 @@ h1 {
     text-align: center;
 }
 
+.score-panel .timer span {
+    display: inline-block;
+    min-width: 20px;
+    text-align: left;
+}
+
 .score-panel .stars {
     margin: 0;
     padding: 0;
