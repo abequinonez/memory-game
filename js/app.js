@@ -271,6 +271,36 @@ const modal = {
             this.checkForMatch();
         }
     },
+    /*
+    Start the timer. Initially sets a start time and continually subtracts from
+    this time to get the elapsed time. Developed with help from the following
+    resources:
+
+    https://www.sitepoint.com/creating-accurate-timers-in-javascript
+    https://stackoverflow.com/a/7910506
+    */
+    startTimer() {
+        // Get an initial start time
+        const start = new Date().getTime();
+
+        // Pad the value with a leading zero if necessary
+        function padWithZero(val) {
+            return val > 9 ? val : "0" + val;
+        }
+
+        /*
+        Using an interval, continually call the following function to simulate
+        an onscreen timer. The returned interval ID is saved to an object
+        property in order to cancel the interval later.
+        */
+        this.timer = setInterval(function() {
+            const time = new Date().getTime() - start;
+            const mSeconds = padWithZero(parseInt(time % 1000 / 10, 10));
+            const seconds = padWithZero(parseInt(time / 1000 % 60, 10));
+            const minutes = padWithZero(parseInt(time / 60000, 10));
+            scorePanel.updateTimer(mSeconds, seconds, minutes);
+        }, 10);
+    },
     // Display the card's symbol when clicked
     displayCardSymbol(card) {
         card.classList.add('open', 'show');
