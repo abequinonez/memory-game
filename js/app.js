@@ -188,6 +188,9 @@ const modal = {
 
         // Select the stars total element
         this.starsTotalElem = document.querySelector('.stars-total');
+
+        // Select the time element
+        this.timeElem = document.querySelector('.time');
     },
     // Toggle the modal
     toggleModal() {
@@ -196,6 +199,15 @@ const modal = {
             // Assign the appropriate values to the corresponding elements
             this.movesTotalElem.textContent = game.moveCounter;
             this.starsTotalElem.textContent = game.starsCount;
+
+            /*
+            Get the timer value, remove its whitespace, and then assign it to
+            timeElem's textContent property. Use of the .replace() method,
+            along with the RegExp, was made possible with the following Stack
+            Overflow post: https://stackoverflow.com/a/6623263
+            */
+            const timerVal = scorePanel.timerElem.textContent;
+            this.timeElem.textContent = timerVal.replace(/\s/g, '');
 
             // Hide the card deck
             this.deckContainerElem.style.display = 'none';
