@@ -369,6 +369,9 @@ const modal = {
     isGameOver() {
         // If there are 16 cards in the open cards list, the game is over
         if (this.openCardList.length === 16) {
+            // Stop the timer
+            clearInterval(game.timer);
+
             // Display the modal
             modal.toggleModal();
         }
