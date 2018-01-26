@@ -257,6 +257,10 @@ const modal = {
         this.starsCount = 3;
     },
     handleClick(card) {
+        // Only start the timer on the first click of a new game
+        if (this.moveCounter < 1 && this.openCardList.length < 1) {
+            this.startTimer();
+        }
         this.displayCardSymbol(card);
         this.addCardToOpenList(card);
 
