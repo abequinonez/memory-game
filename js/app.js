@@ -257,9 +257,11 @@ const modal = {
         modal.setup();
     },
     reset() {
+        clearInterval(game.timer);
         this.setProperties();
         scorePanel.resetStarElems();
         scorePanel.updateMoveCounterElem(0);
+        scorePanel.updateTimer('00', '00', '00');
         deck.resetDeck();
     },
     // Set (or reset) the game object properties
