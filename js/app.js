@@ -6,11 +6,8 @@ const scorePanel = {
         this.addRestartBtnListener();
     },
     selectComponents() {
-        // Select the timer elements
+        // Select the timer element
         this.timerElem = document.querySelector('.timer');
-        this.minutesElem = document.querySelector('.minutes');
-        this.secondsElem = document.querySelector('.seconds');
-        this.mSecondsElem = document.querySelector('.m-seconds');
 
         // Select the star elements as a list (HTMLCollection)
         this.starElems = document.getElementsByClassName('fa-star');
@@ -34,10 +31,14 @@ const scorePanel = {
         this.moveCounterElem.textContent = value;
     },
     // Update the timer with the values passed in
-    updateTimer(mSec, sec, min) {
-        this.mSecondsElem.textContent = mSec;
-        this.secondsElem.textContent = sec;
-        this.minutesElem.textContent = min;
+    updateTimer(min, sec) {
+        // First place the time values inside of span elements
+        const minutesSpan = `<span class="minutes">${min}</span>`;
+        const secondsSpan = `<span class="seconds">${sec}</span>`;
+
+        // Bundle the time values into a single time variable
+        const time = `${minutesSpan}:${secondsSpan}`;
+        this.timerElem.innerHTML = time;
     },
     // Add a click event listener to the restart button
     addRestartBtnListener() {
@@ -261,7 +262,7 @@ const modal = {
         this.setProperties();
         scorePanel.resetStarElems();
         scorePanel.updateMoveCounterElem(0);
-        scorePanel.updateTimer('00', '00', '00');
+        scorePanel.updateTimer('00', '00');
         deck.resetDeck();
     },
     // Set (or reset) the game object properties
@@ -313,11 +314,10 @@ const modal = {
         */
         this.timer = setInterval(function() {
             const time = new Date().getTime() - start;
-            const mSeconds = padWithZero(parseInt(time % 1000 / 10, 10));
             const seconds = padWithZero(parseInt(time / 1000 % 60, 10));
             const minutes = padWithZero(parseInt(time / 60000, 10));
-            scorePanel.updateTimer(mSeconds, seconds, minutes);
-        }, 10);
+            scorePanel.updateTimer(minutes, seconds);
+        }, 1000);
     },
     // Display the card's symbol when clicked
     displayCardSymbol(card) {
