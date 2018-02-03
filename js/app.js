@@ -372,9 +372,21 @@ const modal = {
 
         // Now check if the symbols match
         if (currentCardSymbol === previousCardSymbol) {
+            this.handleMatch(currentCard, previousCard);
             this.isGameOver();
         } else {
             this.handleMismatch(previousIndex, currentCard, previousCard);
+        }
+    },
+    /*
+    Remove the open and show classes from each card in the matching pair, and
+    replace them with the match class for improved user feedback. This feature
+    came as a reminder from a Udacity reviewer.
+    */
+    handleMatch(currentCard, previousCard) {
+        for (let i = 0; i < arguments.length; i++) {
+            arguments[i].classList.remove('open', 'show');
+            arguments[i].classList.add('match');
         }
     },
     handleMismatch(previousIndex, currentCard, previousCard) {
