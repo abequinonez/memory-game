@@ -104,6 +104,9 @@ const deck = {
         // Create a fragment to reduce reflow and repaint
         const fragment = document.createDocumentFragment();
 
+        // Create an empty array to hold the card elements
+        this.cardElems = [];
+
         // Loop through each card and create its HTML
         for (const card of this.cardList) {
             // Create a list item element for each card
@@ -121,6 +124,9 @@ const deck = {
 
             // Append each card element to the document fragment
             fragment.appendChild(cardElem);
+
+            // Add each card element to the cardElems array
+            this.cardElems.push(cardElem);
         }
 
         // Select the deck element
@@ -275,24 +281,29 @@ const modal = {
         this.openCardList =[];
         this.moveCounter = 0;
         this.starsCount = 3;
+        this.canClick = true;
     },
     handleClick(card) {
         // Only start the timer on the first click of a new game
         if (this.moveCounter < 1 && this.openCardList.length < 1) {
             this.startTimer();
         }
-        this.displayCardSymbol(card);
-        this.addCardToOpenList(card);
 
-        /*
-        Call the appropriate methods when a move has been made. This is
-        determined by there being an even number of cards in the open
-        cards list.
-        */
-        if (this.openCardList.length % 2 === 0) {
-            this.incrementMoveCounter();
-            this.removeStarIfNecessary();
-            this.checkForMatch();
+        // Only proceed if a user can click on a card
+        if (this.canClick) {
+            this.displayCardSymbol(card);
+            this.addCardToOpenList(card);
+
+            /*
+            Call the appropriate methods when a move has been made. This is
+            determined by there being an even number of cards in the open
+            cards list.
+            */
+            if (this.openCardList.length % 2 === 0) {
+                this.incrementMoveCounter();
+                this.removeStarIfNecessary();
+                this.checkForMatch();
+            }
         }
     },
     /*
@@ -390,11 +401,27 @@ const modal = {
         }
     },
     handleMismatch(previousIndex, currentCard, previousCard) {
+        this.toggleClick();
         this.openCardList.splice(previousIndex, 2);
         setTimeout(function() {
             currentCard.classList.remove('open', 'show');
             previousCard.classList.remove('open', 'show');
-        }, 800);
+            this.toggleClick();
+        }.bind(this), 800);
+    },
+    // Disable or enable the user's ability to click on a card
+    toggleClick() {
+        if (this.canClick) {
+            this.canClick = false;
+            deck.cardElems.forEach(function(card) {
+                card.classList.add('no-pointer');
+            });
+        } else {
+            this.canClick = true;
+            deck.cardElems.forEach(function(card) {
+                card.classList.remove('no-pointer');
+            });
+        }
     },
     // Check if the game is over and take appropriate action
     isGameOver() {
