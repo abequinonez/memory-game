@@ -151,13 +151,7 @@ const deck = {
     },
     // Add a click event listener to each card
     addEventListeners() {
-        /*
-        Use the spread operator to convert the HTMLCollection to an array.
-        Developed with help from this article:
-        https://hackernoon.com/htmlcollection-nodelist-and-array-of-objects-da42737181f9
-        */
-        const cards = [...document.getElementsByClassName('card')];
-        cards.forEach(function(card) {
+        this.cardElems.forEach(function(card) {
             card.addEventListener('click', function() {
                 // Only handle a click if a card is not "open"
                 if (!this.classList.contains('open')) {
@@ -168,8 +162,7 @@ const deck = {
     },
     // Reset the card deck by clearing the cards and adding a new set
     resetDeck() {
-        const cards = document.querySelectorAll('.card');
-        cards.forEach(function(card) {
+        this.cardElems.forEach(function(card) {
             card.remove();
         });
         this.displayCards();
