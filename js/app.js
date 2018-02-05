@@ -395,11 +395,13 @@ const modal = {
     },
     handleMismatch(previousIndex, currentCard, previousCard) {
         this.toggleClick();
+        this.toggleMismatchColors(currentCard, previousCard);
         this.openCardList.splice(previousIndex, 2);
         setTimeout(function() {
             currentCard.classList.remove('open', 'show');
             previousCard.classList.remove('open', 'show');
             this.toggleClick();
+            this.toggleMismatchColors(currentCard, previousCard);
         }.bind(this), 800);
     },
     // Disable or enable the user's ability to click on a card
@@ -415,6 +417,17 @@ const modal = {
                 card.classList.remove('no-pointer');
             });
         }
+    },
+    // Toggle the appropriate colors when there is a mismatch
+    toggleMismatchColors(currentCard, previousCard) {
+        if (currentCard.classList.contains('mismatch')) {
+            currentCard.classList.remove('mismatch');
+            previousCard.classList.remove('mismatch');
+        } else {
+            currentCard.classList.add('mismatch');
+            previousCard.classList.add('mismatch');
+        }
+
     },
     // Check if the game is over and take appropriate action
     isGameOver() {

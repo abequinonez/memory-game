@@ -81,8 +81,13 @@ h1 {
     font-size: 33px;
 }
 
+.deck .card.mismatch {
+    background: #f35e35 !important;
+}
+
 .deck .card.no-pointer {
     cursor: default;
+    background: #727c86;
 }
 
 /*
